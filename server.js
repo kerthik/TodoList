@@ -7,9 +7,13 @@ const app = express();
 const port =4000;
 
 
-// to avoid cors policy between ports we use cors 
+// to avoid cors policy between ports so we use cors 
 app.use(cors()) 
 app.use(express.json())
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/todo');
+    }
+  
 //design the schema using mongoose 
 const  userSchema = new mongoose.Schema({
     username: String, 
@@ -19,7 +23,16 @@ const  userSchema = new mongoose.Schema({
 
 app.post("/register" , async(req,res)=>{
 const {username ,password }=req.body;
+//console.log(req.body)
 // const user = new User()
+const user = await User.findOne({ username }).exec();
+if(user){
+    
+    res.json({
+        message:'username already exist  '
+    })
+    return; 
+}
 await User.create({username,password});
 res.json({
     message:"success",
@@ -28,9 +41,6 @@ res.json({
 });
 main().catch(err => console.log(err));
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/todo');
-  }
 
 
 app.listen(port , ()=>{

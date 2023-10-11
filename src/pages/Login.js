@@ -3,13 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import { Credentialcontext } from '../App'
 
 
-const Register = () => {
+const Login = () => {
     const [username,setUsername]=useState("");
     const [password ,setPassword]=useState("");
     const navigate = useNavigate();
     const [,setCredential]=useContext(Credentialcontext)
 
-    const Register=(e)=>{
+    const Loginfun=(e)=>{
         e.preventDefault();
         setUsername("")
         setPassword("") 
@@ -35,16 +35,16 @@ const Register = () => {
 
   return (
     <div>
-        <h1>Register Now</h1>
-        <form onSubmit={Register}>
+        <h1>Login Now</h1>
+        <form onSubmit={Loginfun}>
             <input placeholder='username' onChange={(e)=>setUsername(e.target.value)  } value={username}/>
             <br/>
             <input placeholder='password'  onChange={(e)=>setPassword(e.target.value)} type='password' value={password}/>
             <br/>
-            <button type='submit'>Register</button>
+            <button type='submit'>Login</button>
         </form>
     </div>
   )
 }
 
-export default Register
+export default Login
