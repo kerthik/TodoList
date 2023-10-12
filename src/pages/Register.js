@@ -25,7 +25,8 @@ const Register = () => {
                 })
         }).then(()=>{
             setCredential({
-                username
+                username,
+                password
             })
            navigate("/")
         })
@@ -37,9 +38,9 @@ const Register = () => {
     <div>
         <h1>Register Now</h1>
         <form onSubmit={Register}>
-            <input placeholder='username' onChange={(e)=>setUsername(e.target.value)  } value={username}/>
+            <input placeholder='username' onChange={(e)=>setUsername(e.target.value)  } value={username} required/>
             <br/>
-            <input placeholder='password'  onChange={(e)=>setPassword(e.target.value)} type='password' value={password}/>
+            <input placeholder='password'  onChange={(e)=>setPassword(e.target.value)} type='password' value={password} required/>
             <br/>
             <button type='submit'>Register</button>
         </form>

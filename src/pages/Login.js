@@ -14,7 +14,7 @@ const Login = () => {
         setUsername("")
         setPassword("") 
         
-        fetch(`http://localhost:4000/register`,{
+        fetch(`http://localhost:4000/login`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,7 +25,8 @@ const Login = () => {
                 })
         }).then(()=>{
             setCredential({
-                username
+                username,
+                password
             })
            navigate("/")
         })
@@ -37,9 +38,9 @@ const Login = () => {
     <div>
         <h1>Login Now</h1>
         <form onSubmit={Loginfun}>
-            <input placeholder='username' onChange={(e)=>setUsername(e.target.value)  } value={username}/>
+            <input placeholder='username' onChange={(e)=>setUsername(e.target.value)  } value={username} required/>
             <br/>
-            <input placeholder='password'  onChange={(e)=>setPassword(e.target.value)} type='password' value={password}/>
+            <input placeholder='password'  onChange={(e)=>setPassword(e.target.value)} type='password' value={password} required/>
             <br/>
             <button type='submit'>Login</button>
         </form>
